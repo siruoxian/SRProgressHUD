@@ -1,9 +1,8 @@
 //
 //  SRProgressHUD.m
-//  TLBrowser
 //
-//  Created by 小叶 on 2019/2/28.
-//  Copyright © 2019 小叶. All rights reserved.
+//  Created by siruoxian on 2019/2/28.
+//  Copyright © siruoxian. All rights reserved.
 //
 
 #import "SRProgressHUD.h"
@@ -656,18 +655,20 @@ static const CGFloat SRDefaultDetailsLabelFontSize = 12.f;
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     if (self.hit) {
         // If the interaction is not open, or the view is hidden
-          [self hideAnimated:YES];
+        
         if (self.userInteractionEnabled == NO ||  self.hidden == YES)
-        {
+        {     [self hideAnimated:YES];
             return nil;
         }
         CGPoint cPoint=[self convertPoint:point toView:self.bezelView];
         if ([self.bezelView pointInside:cPoint withEvent:event]) {
+            
             return [super hitTest:point withEvent:event];
         }
-         return nil;
+        [self hideAnimated:YES];
+        return nil;
     }
-      return [super hitTest:point withEvent:event];;
+    return [super hitTest:point withEvent:event];;
 }
 
 #pragma mark - Properties
